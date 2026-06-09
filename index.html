@@ -1,0 +1,470 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1b1f23;color:#e1e1e1;min-height:100vh;}
+  .app{max-width:390px;margin:0 auto;background:#1b1f23;position:relative;padding-bottom:64px;}
+
+  .topbar{background:#1b1f23;padding:12px 16px 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2f35;position:sticky;top:0;z-index:10;}
+  .topbar-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#0077b5,#004a80);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;flex-shrink:0;}
+  .topbar-search{flex:1;background:#2a2f35;border:none;border-radius:4px;padding:7px 12px;color:#a0a8b0;font-size:13px;outline:none;}
+  .topbar-icons{display:flex;gap:18px;color:#b0bac4;}
+  .topbar-icons i{font-size:22px;cursor:pointer;}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .feed-card{background:#23282e;border-top:1px solid #2a2f35;border-bottom:1px solid #2a2f35;margin-bottom:8px;padding-bottom:4px;}
+  .post-header{display:flex;align-items:flex-start;gap:10px;padding:12px 14px 8px;}
+  .post-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#0077b5,#004a80);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+  .post-meta{flex:1;}
+  .post-name{font-size:14px;font-weight:600;color:#e8ecef;line-height:1.3;}
+  .post-subtitle{font-size:12px;color:#8a95a0;line-height:1.4;margin-top:1px;}
+  .post-time{font-size:11px;color:#6b7580;margin-top:2px;}
+  .post-follow{font-size:13px;color:#71b7e6;font-weight:500;cursor:pointer;white-space:nowrap;padding-top:2px;}
+
+  .post-body{padding:0 14px 10px;}
+  .post-text{font-size:14px;color:#c8d0d8;line-height:1.55;}
+  .post-company-tag{display:inline-block;background:#0077b515;color:#71b7e6;font-size:11px;padding:2px 8px;border-radius:3px;margin-bottom:8px;font-weight:500;}
+
+  .exp-block{background:#1e2329;border:1px solid #2a2f35;border-radius:6px;padding:12px;margin-top:8px;}
+  .exp-title{font-size:14px;font-weight:600;color:#e8ecef;}
+  .exp-company{font-size:13px;color:#8a95a0;margin-top:1px;}
+  .exp-date{font-size:11px;color:#5a6472;margin-top:2px;}
+  .exp-bullets{margin-top:8px;padding-left:16px;}
+  .exp-bullets li{font-size:13px;color:#b0bac4;line-height:1.6;margin-bottom:3px;}
+
+  .skills-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .skill-pill{background:#1e2329;border:1px solid #2e3540;border-radius:3px;padding:5px 10px;font-size:12px;color:#a8b4c0;font-weight:500;}
+
+  .edu-block{display:flex;gap:10px;align-items:flex-start;margin-top:8px;}
+  .edu-icon{width:38px;height:38px;background:#1e2329;border:1px solid #2e3540;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#71b7e6;font-size:18px;}
+  .edu-info .deg{font-size:14px;font-weight:600;color:#e8ecef;}
+  .edu-info .school{font-size:13px;color:#8a95a0;}
+  .edu-info .year{font-size:11px;color:#5a6472;margin-top:1px;}
+
+  .reactions-row{display:flex;align-items:center;justify-content:space-between;padding:4px 14px 4px;border-top:1px solid #2a2f35;margin-top:8px;}
+  .react-left{font-size:12px;color:#6b7580;display:flex;align-items:center;gap:4px;}
+  .react-left .emojis{font-size:14px;letter-spacing:-2px;}
+  .react-right{font-size:12px;color:#6b7580;}
+
+  .action-row{display:flex;border-top:1px solid #2a2f35;padding:2px 0;}
+  .action-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px;gap:3px;cursor:pointer;border:none;background:none;color:#8a95a0;font-size:11px;font-family:inherit;}
+  .action-btn i{font-size:20px;}
+  .action-btn:hover{background:#2a2f35;}
+
+  .profile-header-card{background:#23282e;border-bottom:1px solid #2a2f35;margin-bottom:8px;}
+  .profile-banner{height:80px;background:linear-gradient(120deg,#003752,#0077b5,#004a80);position:relative;}
+  .profile-av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#0a66c2,#002f4e);border:3px solid #23282e;position:absolute;bottom:-30px;left:16px;display:flex;align-items:center;font-size:26px;font-weight:700;color:#fff;justify-content:center;}
+  .profile-info{padding:38px 16px 14px;}
+  .profile-name{font-size:20px;font-weight:700;color:#e8ecef;}
+  .profile-title{font-size:14px;color:#8a95a0;margin-top:3px;}
+  .profile-loc{font-size:12px;color:#6b7580;margin-top:2px;display:flex;align-items:center;gap:4px;}
+  .profile-loc i{font-size:14px;}
+  .profile-open{margin-top:10px;background:#0a66c2;color:#fff;border:none;border-radius:20px;padding:7px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+
+  .contact-card{background:#23282e;border-top:1px solid #2a2f35;border-bottom:1px solid #2a2f35;padding:16px 16px;margin-bottom:8px;}
+  .contact-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #2a2f35;}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-icon{width:36px;height:36px;border-radius:50%;background:#0a66c215;display:flex;align-items:center;justify-content:center;color:#71b7e6;font-size:18px;flex-shrink:0;}
+  .contact-label{font-size:12px;color:#6b7580;}
+  .contact-val{font-size:14px;color:#e8ecef;font-weight:500;}
+  .contact-link{font-size:14px;color:#71b7e6;font-weight:500;text-decoration:none;}
+
+  .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:390px;background:#1b1f23;border-top:1px solid #2a2f35;display:flex;z-index:20;}
+  .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 10px;cursor:pointer;border:none;background:none;color:#8a95a0;font-size:10px;font-family:inherit;gap:3px;text-decoration:none;}
+  .nav-btn i{font-size:22px;}
+  .nav-btn.active{color:#71b7e6;}
+  .nav-btn.active i{color:#71b7e6;}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+<div class="app">
+
+  <div class="topbar">
+    <div class="topbar-avatar">JW</div>
+    <input class="topbar-search" type="text" placeholder="Search" readonly>
+    <div class="topbar-icons">
+      <i class="ti ti-message-circle" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div id="page-home" class="page active">
+
+    <div class="profile-header-card">
+      <div class="profile-banner"></div>
+      <div class="profile-av">JW</div>
+      <div class="profile-info">
+        <div class="profile-name">Jaron Whittingham</div>
+        <div class="profile-title">Ecommerce · Marketing Technology · Digital Content</div>
+        <div class="profile-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Calgary, AB · Open to work</div>
+        <button class="profile-open" onclick="openLink('https://www.linkedin.com/in/jaronwhittingham/')">Connect on LinkedIn</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Manager, Marketing – E-Commerce</div>
+          <div class="post-time">Jan 2025 – Present · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">📦 Mini Mall Storage Properties</span>
+        <div class="exp-block">
+          <div class="exp-title">Manager, Marketing – E-Commerce &amp; Customer Lifecycle</div>
+          <ul class="exp-bullets">
+            <li>Managed complex ecommerce website through redesigns, campaigns, bugs &amp; outages</li>
+            <li>Ownership of ecommerce journey and customer lifecycle</li>
+            <li>Spearheaded adoption, testing &amp; training of new website platforms and CMS</li>
+            <li>Worked with SEO/SEM teams to test and enhance website features</li>
+            <li>Collaborated with internal stakeholders on brand, pricing &amp; design standards</li>
+            <li>Mentored and delegated to a cross-functional marketing team</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍❤️💡</span> 47</div>
+        <div class="react-right">12 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Digital Marketing Specialist</div>
+          <div class="post-time">Sept 2021 – Jan 2025 · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">🌾 United Farmers of Alberta</span>
+        <div class="exp-block">
+          <div class="exp-title">Digital Marketing Specialist</div>
+          <ul class="exp-bullets">
+            <li>Built and delivered weekly/monthly email campaigns driving engagement, sales &amp; revenue KPIs</li>
+            <li>Developed segmentation lists that grew ecommerce transactions from email by 90%</li>
+            <li>Spearheaded launch &amp; optimization of SAP Marketing Cloud email platform</li>
+            <li>Collaborated with demand gen (SEM), SEO &amp; social teams to align campaigns</li>
+            <li>Tracked and reported email, sales &amp; KPI data for executive stakeholders</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍💡🎉</span> 83</div>
+        <div class="react-right">21 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Lead, Digital Content Practice</div>
+          <div class="post-time">Sept 2016 – Sept 2021 · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">📡 Shaw Communications</span>
+        <div class="exp-block">
+          <div class="exp-title">Lead, Digital Content Practice</div>
+          <ul class="exp-bullets">
+            <li>Developed and sustained shaw.ca, business.shaw.ca, investors.shaw.ca &amp; shawdirect.ca</li>
+            <li>Sustained digital platforms using enterprise CMS tools</li>
+            <li>Cross-functional collaboration with Creative, SEO, SEM &amp; Product teams</li>
+            <li>Stakeholder request intake and prioritization across multiple departments</li>
+            <li>Delivered on tight deadlines including off-hours code &amp; content deployments</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍❤️</span> 61</div>
+        <div class="react-right">9 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Social Media &amp; Marketing Coordinator</div>
+          <div class="post-time">Mar 2012 – Sept 2016 · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">🏙️ Downtown Calgary</span>
+        <div class="exp-block">
+          <div class="exp-title">Social Media &amp; Marketing Coordinator</div>
+          <ul class="exp-bullets">
+            <li>Created and executed online marketing strategy</li>
+            <li>Developed paid ad campaigns: SEM, social &amp; influencer marketing</li>
+            <li>Managed brand governance, SEO &amp; user-generated content across channels</li>
+            <li>Grew website traffic 20% YoY; grew social platforms exponentially over 3 years</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍🎉</span> 38</div>
+        <div class="react-right">5 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Online Marketing Specialist</div>
+          <div class="post-time">Jul 2010 – Mar 2012 · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">📈 ActiveConversion</span>
+        <div class="exp-block">
+          <div class="exp-title">Online Marketing Specialist</div>
+          <ul class="exp-bullets">
+            <li>Development and sustainment of 40+ client websites</li>
+            <li>Customer success &amp; support for a SaaS analytics product</li>
+            <li>Developed and managed SEM/SEO campaigns</li>
+            <li>Generated monthly content strategy recommendations from SERP &amp; GA data</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍</span> 24</div>
+        <div class="react-right">3 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Webmaster</div>
+          <div class="post-time">Sept 2009 – Jul 2010 · Calgary, AB</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">🔩 Foothills Building Components</span>
+        <div class="exp-block">
+          <div class="exp-title">Webmaster</div>
+          <ul class="exp-bullets">
+            <li>Aided website makeover to align with new company branding</li>
+            <li>Maintained website with new products and marketing materials</li>
+            <li>Aided in design of a building project portfolio</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍</span> 11</div>
+        <div class="react-right">1 comment</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Education &amp; Certifications</div>
+          <div class="post-time">2008 – 2020</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">🎓 Education</span>
+        <div class="edu-block" style="margin-top:10px;">
+          <div class="edu-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+          <div class="edu-info">
+            <div class="deg">Bachelor of Fine Arts – New Media</div>
+            <div class="school">University of Lethbridge</div>
+            <div class="year">2008</div>
+          </div>
+        </div>
+        <div class="edu-block" style="margin-top:10px;">
+          <div class="edu-icon"><i class="ti ti-certificate" aria-hidden="true"></i></div>
+          <div class="edu-info">
+            <div class="deg">Professional Scrum Master</div>
+            <div class="school">AGILE.org</div>
+            <div class="year">2020</div>
+          </div>
+        </div>
+        <div class="edu-block" style="margin-top:10px;">
+          <div class="edu-icon"><i class="ti ti-code" aria-hidden="true"></i></div>
+          <div class="edu-info">
+            <div class="deg">Cascading Style Sheets</div>
+            <div class="school">SAIT</div>
+            <div class="year">2011</div>
+          </div>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍🎓💡</span> 55</div>
+        <div class="react-right">7 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Skills &amp; Expertise</div>
+          <div class="post-time">Updated recently</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">⚡ Top Skills</span>
+        <div class="skills-grid">
+          <span class="skill-pill">Ecommerce Strategy</span>
+          <span class="skill-pill">Email Marketing</span>
+          <span class="skill-pill">SAP Marketing Cloud</span>
+          <span class="skill-pill">SEO / SEM</span>
+          <span class="skill-pill">CSS / HTML</span>
+          <span class="skill-pill">CMS Platforms</span>
+          <span class="skill-pill">Agile / Scrum</span>
+          <span class="skill-pill">User Stories</span>
+          <span class="skill-pill">Backlog Grooming</span>
+          <span class="skill-pill">Customer Lifecycle</span>
+          <span class="skill-pill">Stakeholder Mgmt</span>
+          <span class="skill-pill">Data &amp; Analytics</span>
+          <span class="skill-pill">Digital Content</span>
+          <span class="skill-pill">Team Leadership</span>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍💪</span> 92</div>
+        <div class="react-right">14 endorsements</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="page-contact" class="page">
+    <div style="padding:16px 16px 8px;">
+      <div style="font-size:18px;font-weight:700;color:#e8ecef;">Contact Info</div>
+      <div style="font-size:13px;color:#6b7580;margin-top:2px;">Jaron Whittingham</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-val">Calgary, AB T2V 2J9</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">(403) 671-8779</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">Email</div>
+          <a class="contact-link" href="mailto:jjwhittingham@gmail.com">jjwhittingham@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <a class="contact-link" href="https://www.linkedin.com/in/jaronwhittingham/" target="_blank">linkedin.com/in/jaronwhittingham</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin:0 16px;">
+      <div style="background:#23282e;border-radius:8px;border:1px solid #2a2f35;padding:14px 16px;text-align:center;">
+        <div style="font-size:13px;color:#8a95a0;margin-bottom:10px;">Open to new opportunities in Product, Ecommerce &amp; Digital Marketing</div>
+        <div style="font-size:13px;color:#8a95a0;margin-bottom:10px;">This resum&eacute; was vibe-coded using Claude.</div>
+        <button onclick="openLink('mailto:jjwhittingham@gmail.com')" style="background:#0a66c2;color:#fff;border:none;border-radius:20px;padding:8px 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;">Send a message</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+  <button class="nav-btn active" id="nav-home" onclick="switchPage('home')">
+    <i class="ti ti-home" aria-hidden="true"></i>Home
+  </button>
+  <button class="nav-btn" id="nav-contact" onclick="switchPage('contact')">
+    <i class="ti ti-mail" aria-hidden="true"></i>Contact
+  </button>
+  <a class="nav-btn" href="https://www.linkedin.com/in/jaronwhittingham/" target="_blank" id="nav-linkedin">
+    <i class="ti ti-brand-linkedin" aria-hidden="true"></i>LinkedIn
+  </a>
+</nav>
+
+<script>
+function switchPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
