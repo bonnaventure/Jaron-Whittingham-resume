@@ -35,6 +35,8 @@
 
   .skills-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
   .skill-pill{background:#1e2329;border:1px solid #2e3540;border-radius:3px;padding:5px 10px;font-size:12px;color:#a8b4c0;font-weight:500;}
+  .skill-cat{font-size:13px;font-weight:600;color:#e8ecef;margin-top:12px;}
+  .skill-cat:first-child{margin-top:0;}
 
   .edu-block{display:flex;gap:10px;align-items:flex-start;margin-top:8px;}
   .edu-icon{width:38px;height:38px;background:#1e2329;border:1px solid #2e3540;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#71b7e6;font-size:18px;}
@@ -96,7 +98,7 @@
       <div class="profile-av">JW</div>
       <div class="profile-info">
         <div class="profile-name">Jaron Whittingham</div>
-        <div class="profile-title">Ecommerce · Marketing Technology · Digital Content</div>
+        <div class="profile-title">DTC Ecommerce · Marketing Technology · Digital Content Management Systems</div>
         <div class="profile-loc"><i class="ti ti-map-pin" aria-hidden="true"></i>Calgary, AB · Open to work</div>
         <button class="profile-open" onclick="openLink('https://www.linkedin.com/in/jaronwhittingham/')">Connect on LinkedIn</button>
       </div>
@@ -107,7 +109,41 @@
         <div class="post-avatar">JW</div>
         <div class="post-meta">
           <div class="post-name">Jaron Whittingham</div>
-          <div class="post-subtitle">Manager, Marketing – E-Commerce</div>
+          <div class="post-subtitle">DTC Ecommerce · Marketing Technology · Digital Content Management Systems</div>
+          <div class="post-time">Calgary, AB · Open to work</div>
+        </div>
+        <div class="post-follow">+ Follow</div>
+      </div>
+      <div class="post-body">
+        <span class="post-company-tag">👋 About Me</span>
+        <div class="post-text" style="margin-top:8px;">Customer experience and digital marketing professional specializing in direct-to-consumer ecommerce, content management systems, website optimization, project management, and digital transformation. Experienced across enterprise software development, the digital marketing lifecycle, investor relations, and customer segmentation — with a background spanning Non-Profit, Telecom, Agriculture, and Real Estate/Self-Storage.</div>
+        <div class="skills-grid" style="margin-top:10px;">
+          <span class="skill-pill">DTC Ecommerce</span>
+          <span class="skill-pill">Marketing Technology</span>
+          <span class="skill-pill">Content Management Systems</span>
+          <span class="skill-pill">Website Optimization</span>
+          <span class="skill-pill">Project Management</span>
+          <span class="skill-pill">Digital Transformation</span>
+        </div>
+      </div>
+      <div class="reactions-row">
+        <div class="react-left"><span class="emojis">👍❤️💡</span> 128</div>
+        <div class="react-right">34 comments</div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn"><i class="ti ti-thumb-up" aria-hidden="true"></i>Like</button>
+        <button class="action-btn"><i class="ti ti-message-circle" aria-hidden="true"></i>Comment</button>
+        <button class="action-btn"><i class="ti ti-repeat" aria-hidden="true"></i>Repost</button>
+        <button class="action-btn"><i class="ti ti-send" aria-hidden="true"></i>Send</button>
+      </div>
+    </div>
+
+    <div class="feed-card">
+      <div class="post-header">
+        <div class="post-avatar">JW</div>
+        <div class="post-meta">
+          <div class="post-name">Jaron Whittingham</div>
+          <div class="post-subtitle">Manager, Marketing – E-Commerce &amp; Customer Lifecycle</div>
           <div class="post-time">Jan 2025 – Present · Calgary, AB</div>
         </div>
         <div class="post-follow">+ Follow</div>
@@ -115,14 +151,14 @@
       <div class="post-body">
         <span class="post-company-tag">📦 Mini Mall Storage Properties</span>
         <div class="exp-block">
-          <div class="exp-title">Manager, Marketing – E-Commerce &amp; Customer Lifecycle</div>
+          <div class="exp-title">Manager, Marketing – E-Commerce and Customer Lifecycle</div>
           <ul class="exp-bullets">
-            <li>Managed complex ecommerce website through redesigns, campaigns, bugs &amp; outages</li>
-            <li>Ownership of ecommerce journey and customer lifecycle</li>
-            <li>Spearheaded adoption, testing &amp; training of new website platforms and CMS</li>
-            <li>Worked with SEO/SEM teams to test and enhance website features</li>
-            <li>Collaborated with internal stakeholders on brand, pricing &amp; design standards</li>
-            <li>Mentored and delegated to a cross-functional marketing team</li>
+            <li>Owned the end-to-end e-commerce journey (Storage Essentials, Storagely), lifecycle marketing, and retention strategies to maximize customer Lifetime Value (LTV)</li>
+            <li>Responsible for new product and location page launches through import, content population, QA, and testing/optimization</li>
+            <li>Managed complex ecomm and CMS platforms through development, QA, redesigns, marketing campaigns, bugs, outages, and more</li>
+            <li>Spearheaded A/B testing and conversion optimization of website speed, landing pages, customer journey, and homepage — increased load times by 10% and conversion rate by 20%</li>
+            <li>Collaborated with SEO and SEM teams to test and enhance website features, leveraging Answer/Generative Engine Optimization (AEO/GEO) and Conversion Rate Optimization (CRO)</li>
+            <li>Fostered close stakeholder communication and cross-functional collaboration to align on branding, pricing, design standards, and asset compliance</li>
           </ul>
         </div>
       </div>
@@ -153,11 +189,12 @@
         <div class="exp-block">
           <div class="exp-title">Email Marketing Specialist</div>
           <ul class="exp-bullets">
-            <li>Built and delivered weekly/monthly email campaigns driving engagement, sales &amp; revenue KPIs</li>
-            <li>Developed segmentation lists that grew ecommerce transactions from email by 90%</li>
-            <li>Spearheaded launch &amp; optimization of SAP Marketing Cloud email platform</li>
-            <li>Collaborated with demand gen (SEM), SEO &amp; social teams to align campaigns</li>
-            <li>Tracked and reported email, sales &amp; KPI data for executive stakeholders</li>
+            <li>Built and delivered weekly and monthly email campaigns via SAP Marketing Cloud, boosting engagement and driving revenue-focused marketing KPIs</li>
+            <li>Website and campaign landing page publishing, quality assurance, updates, and conversion optimization on SAP Hybris and SmartEdit platform</li>
+            <li>Developed customer segmentation lists using match-lists and e-commerce data to increase e-commerce transactions from email by 90% and drive Direct-to-Consumer (DTC) and B2B e-commerce growth</li>
+            <li>Spearheaded the launch and optimization of a new enterprise email marketing platform (SAP Marketing Cloud), collaborating with internal teams and external agencies for agency coordination and vendor management</li>
+            <li>Worked closely with growth &amp; demand generation (SEM), SEO, and social media &amp; content creation teams to optimize platforms and align campaign briefs and campaign governance</li>
+            <li>Tracked and reported on campaign metrics, analyzing Google Analytics (GA4) and CRM data to deliver actionable insights on LTV, email engagement, and sales data to executive stakeholders</li>
           </ul>
         </div>
       </div>
@@ -188,11 +225,12 @@
         <div class="exp-block">
           <div class="exp-title">Lead, Digital Content Practice</div>
           <ul class="exp-bullets">
-            <li>Developed and sustained shaw.ca, business.shaw.ca, investors.shaw.ca &amp; shawdirect.ca</li>
-            <li>Sustained digital platforms using enterprise CMS tools</li>
-            <li>Cross-functional collaboration with Creative, SEO, SEM &amp; Product teams</li>
-            <li>Stakeholder request intake and prioritization across multiple departments</li>
-            <li>Delivered on tight deadlines including off-hours code &amp; content deployments</li>
+            <li>Worked with a large web development team to develop, launch, and sustain shaw.ca, business.shaw.ca, investors.shaw.ca, and shawdirect.ca</li>
+            <li>Content publishing and QA for landing pages, promotional campaigns, Product Description Pages (PDPs), navigation, and contact forms</li>
+            <li>Sustained digital platforms using enterprise CMS platforms (Contentful, Ektron, Drupal) and Adobe Creative Suite templates</li>
+            <li>Drove cross-functional collaboration with Creative, Product, SEO, and SEM teams to ensure brand integrity, web best practices, and optimize budget allocation / return on ad spend</li>
+            <li>Managed stakeholder request intake, prioritization, and vendor management across multiple departments using Jira / task management platforms</li>
+            <li>Delivered on tight deadlines including before and after hours code deployments and Quality Assurance (QA) checks</li>
           </ul>
         </div>
       </div>
@@ -223,10 +261,11 @@
         <div class="exp-block">
           <div class="exp-title">Social Media &amp; Marketing Coordinator</div>
           <ul class="exp-bullets">
-            <li>Created and executed online marketing strategy</li>
-            <li>Developed paid ad campaigns: SEM, social &amp; influencer marketing</li>
-            <li>Managed brand governance, SEO &amp; user-generated content across channels</li>
-            <li>Grew website traffic 20% YoY; grew social platforms exponentially over 3 years</li>
+            <li>Created and executed online marketing strategy, driving social media &amp; content creation across platforms like Facebook, Instagram and Twitter/X</li>
+            <li>Developed and executed paid media campaigns including SEM, social, and influencer marketing, utilizing Canva and CapCut for content production</li>
+            <li>Managed brand governance, SEO, and User-Generated Content (UGC) campaigns across digital marketing channels to build a vibrant community</li>
+            <li>Provided web, social media, and digital marketing analytics and reporting using Google Analytics (GA4)</li>
+            <li>Increased website traffic and audience engagement 20% year-over-year, scaling social platforms exponentially via organic storytelling and public relations</li>
           </ul>
         </div>
       </div>
@@ -257,10 +296,10 @@
         <div class="exp-block">
           <div class="exp-title">Online Marketing Specialist</div>
           <ul class="exp-bullets">
-            <li>Development and sustainment of 40+ client websites</li>
-            <li>Customer success &amp; support for a SaaS analytics product</li>
-            <li>Developed and managed SEM/SEO campaigns</li>
-            <li>Generated monthly content strategy recommendations from SERP &amp; GA data</li>
+            <li>Developed and sustained 40+ client websites, prioritizing client success management</li>
+            <li>Delivered customer success and technical support for a SaaS analytics product, demonstrating strong data literacy</li>
+            <li>Developed and managed client SEM/SEO campaigns to accelerate pipeline development</li>
+            <li>Generated monthly content strategy recommendations based on SERP and Google Analytics (GA4) data</li>
           </ul>
         </div>
       </div>
@@ -291,9 +330,9 @@
         <div class="exp-block">
           <div class="exp-title">Webmaster</div>
           <ul class="exp-bullets">
-            <li>Aided website makeover to align with new company branding</li>
-            <li>Maintained website with new products and marketing materials</li>
-            <li>Aided in design of a building project portfolio</li>
+            <li>Executed website makeover to align with new company branding and identity</li>
+            <li>Maintained website catalog, ensuring catalog hygiene and optimizing product detail pages (PDP)</li>
+            <li>Aided in design and digital presentation of a building project portfolio</li>
           </ul>
         </div>
       </div>
@@ -324,7 +363,7 @@
         <div class="edu-block" style="margin-top:10px;">
           <div class="edu-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
           <div class="edu-info">
-            <div class="deg">Bachelor of Fine Arts – New Media</div>
+            <div class="deg">Bachelors Degree – New Media</div>
             <div class="school">University of Lethbridge</div>
             <div class="year">2008</div>
           </div>
@@ -332,8 +371,8 @@
         <div class="edu-block" style="margin-top:10px;">
           <div class="edu-icon"><i class="ti ti-certificate" aria-hidden="true"></i></div>
           <div class="edu-info">
-            <div class="deg">Professional Scrum Master</div>
-            <div class="school">AGILE.org</div>
+            <div class="deg">Professional Scrum Master (PSM I)</div>
+            <div class="school">Scrum.org</div>
             <div class="year">2020</div>
           </div>
         </div>
@@ -369,22 +408,88 @@
         <div class="post-follow">+ Follow</div>
       </div>
       <div class="post-body">
-        <span class="post-company-tag">⚡ Top Skills</span>
+        <span class="post-company-tag">⚡ Skills &amp; Technologies</span>
+        <div class="skill-cat">🛒 E-Commerce &amp; Digital Marketing</div>
         <div class="skills-grid">
-          <span class="skill-pill">Ecommerce Strategy</span>
-          <span class="skill-pill">Email Marketing</span>
+          <span class="skill-pill">SAP Hybris / Commerce Cloud</span>
+          <span class="skill-pill">Storagely</span>
+          <span class="skill-pill">Storage Essentials</span>
+          <span class="skill-pill">Shopify</span>
+          <span class="skill-pill">B2B E-commerce</span>
+          <span class="skill-pill">Conversion Rate Optimization (CRO)</span>
+          <span class="skill-pill">Lifecycle Marketing</span>
+          <span class="skill-pill">Retention</span>
+          <span class="skill-pill">Growth &amp; Demand Generation</span>
+          <span class="skill-pill">Revenue-focused Marketing</span>
+          <span class="skill-pill">Merchandising</span>
+          <span class="skill-pill">Product Detail Pages (PDP)</span>
+          <span class="skill-pill">Catalog Hygiene</span>
+        </div>
+        <div class="skill-cat">🤖 AI &amp; Productivity Tools</div>
+        <div class="skills-grid">
+          <span class="skill-pill">AI-assisted Workflows</span>
+          <span class="skill-pill">ChatGPT</span>
+          <span class="skill-pill">Claude</span>
+          <span class="skill-pill">Copilot</span>
+          <span class="skill-pill">Asana</span>
+          <span class="skill-pill">ClickUp</span>
+          <span class="skill-pill">Jira / Task Management</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Canva</span>
+          <span class="skill-pill">CapCut</span>
+          <span class="skill-pill">Adobe Creative Suite</span>
+          <span class="skill-pill">Microsoft Office Suite</span>
+        </div>
+        <div class="skill-cat">📊 Data &amp; Analytics</div>
+        <div class="skills-grid">
+          <span class="skill-pill">Google Analytics (GA4)</span>
+          <span class="skill-pill">BigQuery</span>
+          <span class="skill-pill">Looker</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Analytics &amp; Data Infrastructure</span>
+          <span class="skill-pill">Multi-touch Attribution Modeling</span>
+          <span class="skill-pill">A/B Testing</span>
+        </div>
+        <div class="skill-cat">🔧 Marketing Technology (MarTech)</div>
+        <div class="skills-grid">
           <span class="skill-pill">SAP Marketing Cloud</span>
-          <span class="skill-pill">SEO / SEM</span>
-          <span class="skill-pill">CSS / HTML</span>
-          <span class="skill-pill">CMS Platforms</span>
-          <span class="skill-pill">Agile / Scrum</span>
-          <span class="skill-pill">User Stories</span>
-          <span class="skill-pill">Backlog Grooming</span>
-          <span class="skill-pill">Customer Lifecycle</span>
-          <span class="skill-pill">Stakeholder Mgmt</span>
-          <span class="skill-pill">Data &amp; Analytics</span>
-          <span class="skill-pill">Digital Content</span>
-          <span class="skill-pill">Team Leadership</span>
+          <span class="skill-pill">Salesforce Marketing Cloud</span>
+          <span class="skill-pill">Klaviyo</span>
+          <span class="skill-pill">HubSpot</span>
+          <span class="skill-pill">Customer Chatbots</span>
+          <span class="skill-pill">WordPress</span>
+          <span class="skill-pill">Contentful</span>
+          <span class="skill-pill">Storagely CMS</span>
+          <span class="skill-pill">Drupal</span>
+          <span class="skill-pill">Magento</span>
+        </div>
+        <div class="skill-cat">🔍 Search, Content &amp; Media</div>
+        <div class="skills-grid">
+          <span class="skill-pill">SEO</span>
+          <span class="skill-pill">SEM</span>
+          <span class="skill-pill">AEO / GEO</span>
+          <span class="skill-pill">Social Media &amp; Content Creation</span>
+          <span class="skill-pill">User-Generated Content (UGC)</span>
+          <span class="skill-pill">Reels</span>
+          <span class="skill-pill">TikTok</span>
+          <span class="skill-pill">Copywriting</span>
+          <span class="skill-pill">Storytelling</span>
+          <span class="skill-pill">Public Relations</span>
+          <span class="skill-pill">Community Management</span>
+        </div>
+        <div class="skill-cat">🤝 Leadership &amp; Operations</div>
+        <div class="skills-grid">
+          <span class="skill-pill">People Leadership</span>
+          <span class="skill-pill">Stakeholder Communication</span>
+          <span class="skill-pill">Cross-functional Collaboration</span>
+          <span class="skill-pill">Vendor Management</span>
+          <span class="skill-pill">Client Success Management</span>
+          <span class="skill-pill">Agency Coordination</span>
+          <span class="skill-pill">Asset Compliance</span>
+          <span class="skill-pill">Campaign Governance</span>
+          <span class="skill-pill">Budget Allocation</span>
+          <span class="skill-pill">Quality Assurance (QA)</span>
+          <span class="skill-pill">Managing Offshore Resources</span>
         </div>
       </div>
       <div class="reactions-row">
@@ -466,5 +571,8 @@ function switchPage(name){
   document.getElementById('page-'+name).classList.add('active');
   document.getElementById('nav-'+name).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+function openLink(url){
+  window.open(url,'_blank','noopener,noreferrer');
 }
 </script>
